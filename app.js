@@ -19,14 +19,14 @@ app.use(express.static('public'));
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');.
 
 // Render the index page
-app.get('/xixuz', (req, res) => {
+app.get('/', (req, res) => {
   res.render('index', { data: { shortenedLimo: null, error: null } });
 });
 
-app.use('/xixuz/api/v1/', limoRouter);
+app.use('/api/v1/', limoRouter);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);

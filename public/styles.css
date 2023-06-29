@@ -113,10 +113,7 @@ body {
 @media (max-width: 37.5em) {
   .container {
     max-width: 90%;
-  }
-
-  html {
-    font-size: 58.5%;
+    gap: 3rem;
   }
 
   .heading__logo {
