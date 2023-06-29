@@ -1,0 +1,24 @@
+{
+  "name": "xixuz",
+  "version": "1.0.0",
+  "description": "A link length shortening app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "prod": "nodemon NODE_ENV=production app.js"
+  },
+  "author": "zeuhz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "node-cache": "^5.1.2",
+    "qrcode": "^1.5.3",
+    "shortid": "^2.2.16",
+    "vrandom": "^2.0.5"
+  }
+}
