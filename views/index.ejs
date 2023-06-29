@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google font styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- personal styles -->
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <title>Xixuz</title>
+  </head>
+  <body>
+    <div class="error-message">
+      <% if (data.error) { %>
+      <p class="error"><%= data.error %></p>
+      <% } %>
+    </div>
+    <div class="container">
+      <header class="header">
+        <img
+          src="/imgs/xixuz-logo.png"
+          alt="Xixuz logo"
+          class="heading__logo"
+        />
+        <h1 class="heading__primary">Xixuz</h1>
+        <p class="heading__subtitle">smoothly Xting your links</p>
+      </header>
+
+      <div class="shortened-link">
+        <% if (data.shortenedLimo) { %>
+        <p class="shortened-link__text">Your shortened link:</p>
+        <a
+          href="<%= data.shortenedLimo %>"
+          id="<%= data.shortenedLimo %>"
+          target="_blank"
+          ><%= data.shortenedLimo %></a
+        >
+        <% } %>
+      </div>
+
+      <form method="POST" action="/xixuz/api/v1/shorten" class="form">
+        <label for="original_url" class="form__label"
+          >Enter the link to shorten:</label
+        >
+        <input
+          type="text"
+          name="original_url"
+          id="original_url"
+          class="form__input"
+          required
+        />
+        <button type="submit" class="btn btn--submit">Shorten Link</button>
+      </form>
+    </div>
+  </body>
+</html>
