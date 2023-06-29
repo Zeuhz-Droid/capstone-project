@@ -1,5 +1,7 @@
 # **xixuz**
 
+## Introduction
+
 This is a link shortening app, similar to bit.ly or ow.ly.
 
 ## Requirements
