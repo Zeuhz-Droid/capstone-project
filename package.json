@@ -4,8 +4,8 @@
   "description": "A link length shortening app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "prod": "nodemon NODE_ENV=production app.js"
+    "start": "node app.js",
+    "prod": "node NODE_ENV=production app.js"
   },
   "author": "zeuhz",
   "license": "ISC",
