@@ -36,7 +36,7 @@ This is a link shortening app, similar to bit.ly or ow.ly.
 
 ## Base URL
 
-[xixuz](https://xixuz-orderbot-droid.onrender.com/)
+[xixuz](https://xixuz.onrender.com/)
 
 ### Link/Limo MODEL
 
