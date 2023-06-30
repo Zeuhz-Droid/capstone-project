@@ -1,13 +1,13 @@
 const Limo = require('../models/limoModel');
 const shortid = require('shortid');
 
-const { convertStrToQrCode } = require('../utils/utils');
+const { convertStrToQrCode, fetchCacheValue } = require('../utils/utils');
 
 exports.shortenLimo = async (req, res, next) => {
   try {
     //  get the url
     const { original_url } = req.body;
-    let shortID, cacheKey;
+    let shortID, cacheKey, qrCode;
 
     // check if user inserted originalUrl
     if (!original_url)
@@ -24,7 +24,11 @@ exports.shortenLimo = async (req, res, next) => {
     // get shortid of existing url
     if (url) {
       shortID = url.shortened_url;
-      res.render('index', { data: { shortenedLimo: shortID, error: null } });
+      cacheKey = url.qr_code;
+      qrCode = fetchCacheValue(cacheKey);
+      res.render('index', {
+        data: { shortenedLimo: shortID, error: null, qr_code: qrCode },
+      });
       return;
     }
 
@@ -43,9 +47,16 @@ exports.shortenLimo = async (req, res, next) => {
       qr_code: cacheKey,
     });
 
-    res.render('index', { data: { shortenedLimo: shortID, error: null } });
+    //  fetch cached value (qr code) from cached memory
+    if (cacheKey) qrCode = fetchCacheValue(cacheKey);
+
+    res.render('index', {
+      data: { shortenedLimo: shortID, error: null, qr_code: qrCode },
+    });
   } catch (err) {
-    res.render('index', { data: { shortenedLimo: null, error: err.message } });
+    res.render('index', {
+      data: { shortenedLimo: null, error: err.message, qr_code: null },
+    });
   }
 };
 

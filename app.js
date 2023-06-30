@@ -23,7 +23,9 @@ app.set('view engine', 'ejs');
 
 // Render the index page
 app.get('/', (req, res) => {
-  res.render('index', { data: { shortenedLimo: null, error: null } });
+  res.render('index', {
+    data: { shortenedLimo: null, error: null, qr_code: null },
+  });
 });
 
 app.use('/api/v1/', limoRouter);
