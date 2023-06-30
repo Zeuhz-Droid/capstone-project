@@ -48,6 +48,12 @@ body {
   margin-right: 2rem;
 }
 
+.heading__subtitle {
+  font-size: 1.2rem;
+  align-self: center;
+  margin-top: 2.5rem;
+}
+
 .limo-info {
   margin: 2rem;
   min-height: 10rem;
