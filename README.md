@@ -1,4 +1,4 @@
-# **xixuz**
+# **xixuz App**
 
 ## Introduction
 
