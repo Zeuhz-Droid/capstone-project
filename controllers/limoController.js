@@ -62,12 +62,24 @@ exports.shortenLimo = async (req, res, next) => {
 
 exports.getSiteFromShortenedLimo = async (req, res, next) => {
   try {
+    // get the shortened url form the params
     const { shortID } = req.params;
 
+    // fetch shortID
     const limo = await Limo.findOne({ shortened_url: shortID });
 
+    // return error message if link not found
     if (!limo) res.status(400).send('Link not Found.');
 
+    // update analytics
+    limo.updateAnalytics();
+
+    // saved analytics update
+    await limo.save();
+
+    console.log(limo);
+
+    // redirect user to original url
     res.redirect(limo.original_url);
   } catch (error) {
     console.error('Error retrieving link:', error.message);
