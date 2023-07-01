@@ -15,10 +15,17 @@
     <title>Xixuz</title>
   </head>
   <body>
-    <div class="error-message">
-      <% if (data.error) { %>
-      <p class="error"><%= data.error %></p>
-      <% } %>
+    <div class="message">
+      <div>
+        <% if (data.username) { %>
+        <p class="valid">Hi <%= data.username %> 👋 !</p>
+        <% } %>
+      </div>
+      <div>
+        <% if (data.error) { %>
+        <p class="error"><%= data.error %></p>
+        <% } %>
+      </div>
     </div>
     <div class="container">
       <header class="header">
@@ -58,15 +65,15 @@
         </div>
       </div>
 
-      <form method="POST" action="/api/v1/shorten" class="form">
-        <label for="original_url" class="form__label"
+      <form method="POST" action="/api/v1/shorten" class="form-limo" id="limo">
+        <label for="original_url" class="form-limo__label"
           >Enter the link to shorten:</label
         >
         <input
           type="text"
           name="original_url"
           id="original_url"
-          class="form__input"
+          class="form-limo__input"
           required
         />
         <button type="submit" class="btn btn--submit">Shorten Link</button>
