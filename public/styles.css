@@ -23,16 +23,24 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 100vh;
 }
 
-.error-message {
-  color: red;
+.message {
   min-height: 7rem;
   background-color: #fff;
   border: 1px solid #e6e6e6;
   text-align: center;
   padding: 2rem;
   margin-bottom: 2rem;
+}
+
+.error {
+  color: red;
+}
+
+.valid {
+  color: green;
 }
 
 .header {
@@ -108,20 +116,20 @@ body {
   background-size: contain;
 }
 
-.form {
+.form-limo {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.form .btn,
-.form__input {
+.btn,
+.form-limo__input {
   appearance: none;
   outline: none;
   border: none;
 }
 
-.form__input {
+.form-limo__input {
   width: 100%;
   height: 5rem;
   border-radius: 0.5rem;
@@ -156,4 +164,70 @@ body {
     height: 6rem;
     width: auto;
   }
+}
+
+/* SIGN UP PAGE */
+
+#signup,
+#login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  margin: 0 auto;
+  width: 40%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form :last-child {
+  margin-top: 1rem;
+}
+
+.form__label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #9ac6b7;
+}
+
+.form__input {
+  font-family: inherit;
+  width: 100%;
+  height: 5rem;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #e6e6e6;
+  color: #9ac6b7;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.form :nth-child(4) .form__input {
+  margin-bottom: 0;
+}
+
+.form__input:focus {
+  border: 0.5px solid #68ba9e;
+  outline: none;
+}
+
+.form .form__error {
+  font-size: 1.2rem;
+  margin-top: -1rem;
+  color: red;
+}
+
+.hide {
+  visibility: hidden;
 }
