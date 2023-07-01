@@ -91,6 +91,11 @@
       <aside class="sidebar history">
         <h2 class="heading__secondary">History</h2>
         <div class="history__list">
+          <div class="history__item">
+            <span>Original url</span>
+            <span>Shortened url</span>
+            <span>Date created</span>
+          </div>
           <% if (data.history) { %> <% data.history.forEach((item) => { %>
           <div class="history__item">
             <a href="<%= item.original_url %>" target="_blank"
