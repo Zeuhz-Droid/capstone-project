@@ -79,11 +79,13 @@ exports.login = async (req, res, next) => {
     // redact user password
     user.password = undefined;
 
-    // forward user details to next middleware
+    // find user link history to next middleware
+    const limos = await Limo.find({ user: user.id });
 
     res.render('index', {
       data: {
         username: user.username,
+        history: limos,
       },
     });
 
