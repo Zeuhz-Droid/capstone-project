@@ -8,8 +8,45 @@ require('dotenv').config();
 const connectToDatabase = require('./server');
 const app = express();
 const bodyparser = require('body-parser');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 connectToDatabase();
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Express API for XiXuZ',
+    version: '1.0.0',
+    description:
+      'This is a REST API application made with Express. It is a link shortening app.',
+    license: {
+      name: 'Licensed Under MIT',
+      url: 'https://spdx.org/licenses/MIT.html',
+    },
+    contact: {
+      name: 'zeuhz droid',
+      url: 'https://github.com/Zeuhz-Droid',
+    },
+  },
+  servers: [
+    {
+      url: 'http://localhost:8080',
+      description: 'Development server',
+    },
+    {
+      url: 'https://xixuz.onrender.com',
+      description: 'Production seerver',
+    },
+  ],
+};
+
+const options = {
+  swaggerDefinition,
+  // Paths to files containing OpenAPI definitions
+  apis: ['./routes/*.js'],
+};
+const swaggerSpec = swaggerJSDoc(options);
 
 //  use morgan to view requests types
 if ((process.env.NODE_ENV = 'development')) {
@@ -48,6 +85,8 @@ app.post('/signup', signup, (req, res) => {
 app.post('/login', login);
 
 app.use('/api/v1/', verify, limoRouter);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);
