@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const limoSchema = new mongoose.Schema({
   original_url: {
@@ -21,11 +22,18 @@ const limoSchema = new mongoose.Schema({
   },
   date_created: {
     type: Date,
-    default: Date.now(),
+    default: function () {
+      return moment().format('ddd DD-MM-YYYY HH:mm');
+    },
   },
   limo_lastModifiedAt: Date,
   limo_history: {
     type: Array,
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: [true, 'Review must belong to a user'],
   },
 });
 
@@ -44,6 +52,12 @@ limoSchema.pre('save', function (next) {
     date_modified: this.limo_modifiedAt,
     current_url: this.shortened_url,
   });
+
+  next();
+});
+
+limoSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'user', select: 'username' });
 
   next();
 });

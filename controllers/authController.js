@@ -42,7 +42,7 @@ exports.signup = async (req, res, next) => {
   }
 };
 
-exports.authenticateUser = async (req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
     // catch user details
     const { email, password } = req.body;
@@ -113,19 +113,13 @@ exports.verify = async (req, res, next) => {
     // decode and verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-    // save user to req obj
-    req.user = decoded;
-
     // find user
     const user = await User.findById(decoded.id);
 
-    res.render('index', {
-      data: {
-        username: user.username,
-      },
-    });
+    // save user to req obj
+    req.user = user;
 
-    return;
+    next();
   } catch (error) {
     res.render('login', { data: { error: `You are not logged in.` } });
   }

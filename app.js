@@ -1,11 +1,7 @@
 const morgan = require('morgan');
 const express = require('express');
 const limoRouter = require('./routes/limoRouter');
-const {
-  signup,
-  authenticateUser,
-  verify,
-} = require('./controllers/authController');
+const { signup, login, verify } = require('./controllers/authController');
 
 require('dotenv').config();
 
@@ -33,20 +29,24 @@ const info = {
     error: null,
     valid: null,
     qr_code: null,
+    history: null,
   },
 };
 
 // Render the index page
-app.get('/', verify);
+app.get('/', verify, (req, res) => {
+  info.data.username = req.user.username;
+  res.render('index', info);
+});
 
 app.post('/signup', signup, (req, res) => {
   info.data.valid = 'Please Log in.';
   res.render('login', info);
 });
 
-app.post('/login', authenticateUser);
+app.post('/login', login);
 
-app.use('/api/v1/', limoRouter);
+app.use('/api/v1/', verify, limoRouter);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);

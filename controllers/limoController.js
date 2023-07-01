@@ -27,7 +27,12 @@ exports.shortenLimo = async (req, res, next) => {
       cacheKey = url.qr_code;
       qrCode = fetchCacheValue(cacheKey);
       res.render('index', {
-        data: { shortenedLimo: shortID, error: null, qr_code: qrCode },
+        data: {
+          shortenedLimo: shortID,
+          error: null,
+          qr_code: qrCode,
+          username: req.user.username,
+        },
       });
       return;
     }
@@ -45,13 +50,26 @@ exports.shortenLimo = async (req, res, next) => {
       original_url,
       shortened_url: shortID,
       qr_code: cacheKey,
+      user: req.user.id,
     });
 
     //  fetch cached value (qr code) from cached memory
     if (cacheKey) qrCode = fetchCacheValue(cacheKey);
 
+    // find links created by current user
+
+    const limos = await Limo.find({ user: req.user.id });
+
+    console.log(limos);
+    // render user info
     res.render('index', {
-      data: { shortenedLimo: shortID, error: null, qr_code: qrCode },
+      data: {
+        shortenedLimo: shortID,
+        error: null,
+        qr_code: qrCode,
+        username: req.user.username,
+        history: limos,
+      },
     });
   } catch (err) {
     res.render('index', {
