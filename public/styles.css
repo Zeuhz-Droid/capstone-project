@@ -208,26 +208,6 @@ body {
   opacity: 0.7;
 }
 
-@media (max-width: 37.5em) {
-  .container {
-    max-width: 90%;
-    width: 90%;
-    gap: 3rem;
-  }
-
-  .heading__logo {
-    height: 6rem;
-    width: auto;
-  }
-
-  .sidebar {
-    align-self: start;
-    height: 70vh;
-    grid-column: auto;
-    grid-row: auto;
-  }
-}
-
 /* SIGN UP PAGE */
 
 #signup,
@@ -292,4 +272,24 @@ body {
 
 .hide {
   visibility: hidden;
+}
+
+@media (max-width: 37.5em) {
+  .container {
+    max-width: 90%;
+    width: 90%;
+    gap: 3rem;
+  }
+
+  .heading__logo {
+    height: 6rem;
+    width: auto;
+  }
+
+  .sidebar {
+    align-self: start;
+    height: 70vh;
+    grid-column: auto;
+    grid-row: auto;
+  }
 }
