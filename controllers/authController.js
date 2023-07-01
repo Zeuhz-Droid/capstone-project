@@ -105,7 +105,7 @@ exports.verify = async (req, res, next) => {
     //   check for token
     if (!token) {
       res.render('login', {
-        data: { error: 'You are not logged In.' },
+        data: { valid: 'Please log in.' },
       });
       return;
     }
