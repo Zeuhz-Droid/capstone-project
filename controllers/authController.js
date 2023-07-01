@@ -5,6 +5,7 @@ const Limo = require('../models/limoModel');
 const jwt = require('jsonwebtoken');
 
 const sendToken = (token, res) => {
+  // create cookie options
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 60 * 60 * 1000
@@ -12,10 +13,12 @@ const sendToken = (token, res) => {
     httpOnly: true,
   };
 
+  //   set cookie secure to "true" when out of development
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true;
   }
 
+  //   send cookie to client side
   res.cookie('jwt', token, cookieOptions);
 };
 
@@ -82,6 +85,7 @@ exports.login = async (req, res, next) => {
     // find user link history to next middleware
     const limos = await Limo.find({ user: user.id });
 
+    // render index page with user info
     res.render('index', {
       data: {
         username: user.username,
@@ -91,6 +95,7 @@ exports.login = async (req, res, next) => {
 
     return;
   } catch (err) {
+    // send error message
     res.status(500).json({ error: `Error Logging In: ${err}` });
   }
 };
