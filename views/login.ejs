@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google font styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- personal styles -->
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <title>Xixuz</title>
+  </head>
+  <body>
+    <div class="message">
+      <div>
+        <% if (data.error) { %>
+        <p class="error"><%= data.error %></p>
+        <% } %>
+      </div>
+      <div>
+        <% if (data.valid) { %>
+        <p class="valid"><%= data.valid %></p>
+        <% } %>
+      </div>
+    </div>
+    <div class="container">
+      <header class="header">
+        <img
+          src="/imgs/xixuz-logo.png"
+          alt="Xixuz logo"
+          class="heading__logo"
+        />
+        <h1 class="heading__primary">Xixuz</h1>
+        <p class="heading__subtitle">smoothly Xting your links</p>
+      </header>
+      <main id="login">
+        <form action="/login" method="POST">
+          <div class="form__group">
+            <label for="email">Email</label>
+            <input
+              class="form__input"
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form__group">
+            <label for="password">Password</label>
+            <input
+              class="form__input"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="form__group">
+            <button type="submit" class="btn btn--submit btn--login">
+              login
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
