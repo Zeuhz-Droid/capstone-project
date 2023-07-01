@@ -34,50 +34,76 @@
           alt="Xixuz logo"
           class="heading__logo"
         />
-        <h1 class="heading__primary">Xixuz</h1>
-        <p class="heading__subtitle">smoothly Xting your links</p>
+        <div class="heading">
+          <h1 class="heading__primary">Xixuz</h1>
+          <p class="heading__subtitle">smoothly Xting your links</p>
+        </div>
       </header>
 
-      <div class="limo-info">
-        <div class="shortened-link">
-          <% if (data.shortenedLimo) { %>
-          <p class="shortened-link__text">Your shortened link:</p>
-          <a
-            href="<%= data.shortenedLimo %>"
-            id="<%= data.shortenedLimo %>"
-            target="_blank"
-            ><%= data.shortenedLimo %></a
-          >
-          <% } %>
-        </div>
-        <div class="limo__qr-code">
-          <% if (data.qr_code) { %>
-          <span>QR code :</span>
-          <div class="limo__qr-code-container">
-            <span
-              style="width: 200px; height: 200px; font-size: 6.5px"
-              class="limo__qr-code-img"
-              alt="qr-code"
-              data-content="<%= data.qr_code%>"
-            ></span>
+      <main class="main">
+        <div class="limo-info">
+          <div class="shortened-link">
+            <% if (data.shortenedLimo) { %>
+            <p class="shortened-link__text">Your shortened link:</p>
+            <a
+              href="<%= data.shortenedLimo %>"
+              id="<%= data.shortenedLimo %>"
+              target="_blank"
+              ><%= data.shortenedLimo %></a
+            >
+            <% } %>
           </div>
-          <% } %>
+          <div class="limo__qr-code">
+            <% if (data.qr_code) { %>
+            <span>QR code :</span>
+            <div class="limo__qr-code-container">
+              <span
+                style="width: 200px; height: 200px; font-size: 6.5px"
+                class="limo__qr-code-img"
+                alt="qr-code"
+                data-content="<%= data.qr_code%>"
+              ></span>
+            </div>
+            <% } %>
+          </div>
         </div>
-      </div>
 
-      <form method="POST" action="/api/v1/shorten" class="form-limo" id="limo">
-        <label for="original_url" class="form-limo__label"
-          >Enter the link to shorten:</label
+        <form
+          method="POST"
+          action="/api/v1/shorten"
+          class="form-limo"
+          id="limo"
         >
-        <input
-          type="text"
-          name="original_url"
-          id="original_url"
-          class="form-limo__input"
-          required
-        />
-        <button type="submit" class="btn btn--submit">Shorten Link</button>
-      </form>
+          <label for="original_url" class="form-limo__label"
+            >Enter the link to shorten:</label
+          >
+          <input
+            type="text"
+            name="original_url"
+            id="original_url"
+            class="form-limo__input"
+            required
+          />
+          <button type="submit" class="btn btn--submit">Shorten Link</button>
+        </form>
+      </main>
+
+      <aside class="sidebar history">
+        <h2 class="heading__secondary">History</h2>
+        <div class="history__list">
+          <% if (data.history) { %> <% data.history.forEach((item) => { %>
+          <div class="history__item">
+            <a href="<%= item.original_url %>" target="_blank"
+              ><%= item.original_url %></a
+            >
+            <a href="<%= item.shortened_url %>" target="_blank"
+              ><%= item.shortened_url %></a
+            >
+            <span><%= item.date_created %></span>
+          </div>
+          <% }) %> <% } %>
+        </div>
+      </aside>
     </div>
   </body>
 </html>
