@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
+const Limo = require('../models/limoModel');
 const jwt = require('jsonwebtoken');
 
 const sendToken = (token, res) => {
@@ -96,6 +97,7 @@ exports.verify = async (req, res, next) => {
   try {
     //  get the token from user header authorisation obj
 
+    console.log('it got here');
     const token =
       req.headers.authorization?.split(' ')[1] ||
       req.headers.cookie?.split('=')[1] ||
@@ -116,7 +118,13 @@ exports.verify = async (req, res, next) => {
     // find user
     const user = await User.findById(decoded.id);
 
+    console.log('and here too');
+
+    // find links from user
+    const limos = await Limo.find({ user: user.id });
+
     // save user to req obj
+    user.limos = limos;
     req.user = user;
 
     next();

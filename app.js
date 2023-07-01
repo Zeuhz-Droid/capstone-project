@@ -36,6 +36,7 @@ const info = {
 // Render the index page
 app.get('/', verify, (req, res) => {
   info.data.username = req.user.username;
+  info.data.history = req.user.limos;
   res.render('index', info);
 });
 
