@@ -76,14 +76,50 @@ res.render('index', { data: { shortenedLimo: shortID, error: null } });
 
 ### getSiteFromShortenedLimo
 
+```JavaScript
 - Route: /api/v1/:shortID
 - Method: GET
 - Body:
 
-```JavaScript
  res.redirect(limo.original_url);
+```
+
+### signup
+
+```JavaScript
+- Route: /login
+- Method: POST
+- Body: { "email" : "example.com",
+"username": "user123",
+"password": "1234ghi",
+- }
+
+res.render('login', info);
+```
+
+**NOTE:** _info_ is an object containing user details to be displayed on client side
+
+### login
+
+```JavaScript
+- Route: /login
+- Method: POST
+- Body: { "email" : "example.com",
+- "password": "1234ghi"
+- }
+
+res.render('index', {
+      data: {
+        username: user.username,
+        history: limos,
+      },
+});
 ```
 
 ## Contributor
 
 - Zeuhz Droid(David A.)
+
+```
+
+```
