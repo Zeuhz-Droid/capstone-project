@@ -3,15 +3,20 @@ const password2 = document.getElementById('password2');
 const btnSubmitSignupForm = document.querySelector('.btn--signup');
 const formError = document.querySelector('.form__error');
 
-const verifyPassword = (event) => {
-  event.preventDefault();
+let passwordValue;
 
-  if (password.value !== password2.value) {
+password.addEventListener('input', (e) => {
+  passwordValue = e.target.value;
+});
+
+password2.addEventListener('input', handleBtn);
+
+function handleBtn(e) {
+  if (e.target.value !== passwordValue) {
     formError.classList.remove('hide');
+    btnSubmitSignupForm.setAttribute('disabled');
   } else {
     formError.classList.add('hide');
-    btnSubmitSignupForm.removeEventListener('click', verifyPassword);
+    btnSubmitSignupForm.removeAttribute('disabled');
   }
-};
-
-btnSubmitSignupForm.addEventListener('click', verifyPassword);
+}
