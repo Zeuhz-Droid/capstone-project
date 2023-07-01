@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google font styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- personal styles -->
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <title>Xixuz</title>
+  </head>
+  <body>
+    <div class="message">
+      <div>
+        <% if (data.error) { %>
+        <p class="error"><%= data.error %></p>
+        <% } %>
+      </div>
+      <div>
+        <% if (data.username) { %>
+        <p class="valid">Hi <%= data.username %></p>
+        <% } %>
+      </div>
+    </div>
+    <div class="container">
+      <header class="header">
+        <img
+          src="/imgs/xixuz-logo.png"
+          alt="Xixuz logo"
+          class="heading__logo"
+        />
+        <h1 class="heading__primary">Xixuz</h1>
+        <p class="heading__subtitle">smoothly Xting your links</p>
+      </header>
+      <main id="signup">
+        <div class="form">
+          <form action="/signup" method="POST">
+            <div class="form__group">
+              <label for="username">Username</label>
+              <input
+                class="form__input"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="form__group">
+              <label for="email">Email</label>
+              <input
+                class="form__input"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="form__group">
+              <label for="password">Password</label>
+              <input
+                class="form__input"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="form__group">
+              <label for="password2">Confirm Password</label>
+              <input
+                class="form__input"
+                type="password"
+                name="password2"
+                id="password2"
+                placeholder="Confirm Password"
+                required
+              />
+              <span class="form__error hide">passwords don't match.</span>
+            </div>
+            <div class="form__group">
+              <button type="submit" class="btn btn--submit btn--signup">
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+    <script src="/script.js"></script>
+  </body>
+</html>
