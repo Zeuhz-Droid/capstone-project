@@ -121,6 +121,6 @@ exports.verify = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.render('login', { data: { error: `You are not logged in.` } });
+    res.render('login', { data: { valid: `please log in.` } });
   }
 };
