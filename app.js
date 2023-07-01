@@ -1,6 +1,11 @@
 const morgan = require('morgan');
 const express = require('express');
 const limoRouter = require('./routes/limoRouter');
+const {
+  signup,
+  authenticateUser,
+  verify,
+} = require('./controllers/authController');
 
 require('dotenv').config();
 
@@ -21,12 +26,25 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
+const info = {
+  data: {
+    username: null,
+    shortenedLimo: null,
+    error: null,
+    valid: null,
+    qr_code: null,
+  },
+};
+
 // Render the index page
-app.get('/', (req, res) => {
-  res.render('index', {
-    data: { shortenedLimo: null, error: null, qr_code: null },
-  });
+app.get('/', verify);
+
+app.post('/signup', signup, (req, res) => {
+  info.data.valid = 'Please Log in.';
+  res.render('login', info);
 });
+
+app.post('/login', authenticateUser);
 
 app.use('/api/v1/', limoRouter);
 
