@@ -259,6 +259,14 @@ body {
   margin-bottom: 2rem;
 }
 
+.form__input::placeholder {
+  opacity: 0.5;
+}
+
+.form__input:-ms-input-placeholder {
+  opacity: 0.5;
+}
+
 .form :nth-child(4) .form__input {
   margin-bottom: 0;
 }
