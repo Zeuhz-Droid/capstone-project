@@ -9,7 +9,7 @@ password.addEventListener('input', (e) => {
   passwordValue = e.target.value;
 });
 
-password2.addEventListener('input', handleBtn);
+password2?.addEventListener('input', handleBtn);
 
 function handleBtn(e) {
   if (e.target.value !== passwordValue) {
@@ -18,5 +18,38 @@ function handleBtn(e) {
   } else {
     formError.classList.add('hide');
     btnSubmitSignupForm.removeAttribute('disabled');
+  }
+}
+
+// toggle password functionality
+document.addEventListener('change', togglePassword);
+
+// This worked for only one toggle password func.
+// function togglePassword() {
+//   if (formCheckbox.checked) {
+//     showPassword.classList.add('hide');
+//     hidePassword.classList.remove('hide');
+//     password.type = 'text';
+//   } else {
+//     showPassword.classList.remove('hide');
+//     hidePassword.classList.add('hide');
+//     password.type = 'password';
+//   }
+// }
+
+function togglePassword(e) {
+  let elem;
+  if (e.target.classList.contains('form__checkbox')) {
+    elem = e.target.closest('.form__group');
+    if (e.target.checked) {
+      elem.querySelector('.showPassword').classList.add('hide');
+      elem.querySelector('.hidePassword').classList.remove('hide');
+
+      elem.querySelector('.form__input').type = 'text';
+    } else {
+      elem.querySelector('.showPassword').classList.remove('hide');
+      elem.querySelector('.hidePassword').classList.add('hide');
+      elem.querySelector('.form__input').type = 'password';
+    }
   }
 }

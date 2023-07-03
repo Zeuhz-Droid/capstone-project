@@ -12,6 +12,11 @@
     />
     <!-- personal styles -->
     <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <!-- font awesome script -->
+    <script
+      src="https://kit.fontawesome.com/7c9958e3c2.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Xixuz</title>
   </head>
   <body>
@@ -67,11 +72,28 @@
               <input
                 class="form__input"
                 type="password"
+                inputmode="none"
                 name="password"
                 id="password"
                 placeholder="Password"
                 required
               />
+              <!-- toggle password functionality -->
+              <div class="form__checkPassword">
+                <input
+                  type="checkbox"
+                  id="togglePassword"
+                  class="form__checkbox"
+                />
+                <label for="togglePassword" class="showPassword togglePassword"
+                  ><i class="fa-regular fa-eye"></i>
+                </label>
+                <label
+                  for="togglePassword"
+                  class="hidePassword togglePassword hide"
+                  ><i class="fa-regular fa-eye-slash"></i
+                ></label>
+              </div>
             </div>
             <div class="form__group">
               <label for="password2">Confirm Password</label>
@@ -83,6 +105,22 @@
                 placeholder="Confirm Password"
                 required
               />
+              <!-- toggle password functionality -->
+              <div class="form__checkPassword">
+                <input
+                  type="checkbox"
+                  id="togglePassword2"
+                  class="form__checkbox"
+                />
+                <label for="togglePassword2" class="showPassword togglePassword"
+                  ><i class="fa-regular fa-eye"></i>
+                </label>
+                <label
+                  for="togglePassword2"
+                  class="hidePassword togglePassword hide"
+                  ><i class="fa-regular fa-eye-slash"></i
+                ></label>
+              </div>
               <span class="form__error hide">passwords don't match.</span>
             </div>
             <div class="form__group">

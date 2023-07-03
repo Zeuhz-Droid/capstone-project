@@ -230,14 +230,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  position: relative;
 }
 
 .form :nth-child(5) {
   margin-top: 2rem;
-}
-
-.form :last-child {
-  margin-top: 1rem;
 }
 
 .form__label {
@@ -267,10 +265,6 @@ body {
   opacity: 0.5;
 }
 
-.form :nth-child(4) .form__input {
-  margin-bottom: 0;
-}
-
 .form__input:focus {
   border: 0.5px solid #68ba9e;
   outline: none;
@@ -278,12 +272,33 @@ body {
 
 .form .form__error {
   font-size: 1.2rem;
-  margin-top: -1rem;
+  margin-top: -3rem;
   color: red;
 }
 
-.hide {
+.form__checkPassword {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+}
+
+.togglePassword {
+  opacity: 0.5;
+}
+
+.form__checkbox {
+  position: absolute;
+  top: 50%;
   visibility: hidden;
+  transform: translateY(-50%);
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 .pages {

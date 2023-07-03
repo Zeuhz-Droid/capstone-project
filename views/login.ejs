@@ -12,6 +12,11 @@
     />
     <!-- personal styles -->
     <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <!-- font awesome script -->
+    <script
+      src="https://kit.fontawesome.com/7c9958e3c2.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Xixuz</title>
   </head>
   <body>
@@ -60,6 +65,22 @@
               placeholder="Password"
               required
             />
+            <!-- toggle password functionality -->
+            <div class="form__checkPassword">
+              <input
+                type="checkbox"
+                id="togglePassword3"
+                class="form__checkbox"
+              />
+              <label for="togglePassword3" class="showPassword togglePassword"
+                ><i class="fa-regular fa-eye"></i>
+              </label>
+              <label
+                for="togglePassword3"
+                class="hidePassword togglePassword hide"
+                ><i class="fa-regular fa-eye-slash"></i
+              ></label>
+            </div>
           </div>
 
           <div class="form__group">
@@ -75,5 +96,6 @@
         </form>
       </main>
     </div>
+    <script src="/script.js"></script>
   </body>
 </html>
