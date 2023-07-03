@@ -232,6 +232,10 @@ body {
   gap: 1rem;
 }
 
+.form :nth-child(5) {
+  margin-top: 2rem;
+}
+
 .form :last-child {
   margin-top: 1rem;
 }
@@ -272,6 +276,26 @@ body {
 
 .hide {
   visibility: hidden;
+}
+
+.pages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.pages__text {
+  font-size: 1.4rem;
+  color: #010b08;
+}
+
+.pages__link {
+  font-size: 1.4rem;
+  color: #9ac6b7;
+  text-decoration: underline;
+  transform: translateY(-2.5rem);
 }
 
 @media (max-width: 37.5em) {
