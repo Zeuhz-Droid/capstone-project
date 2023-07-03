@@ -77,8 +77,16 @@ app.get('/', verify, (req, res) => {
   res.render('index', info);
 });
 
+app.get('/signup', (req, res) => {
+  res.render('signup', info);
+});
+
 app.post('/signup', signup, (req, res) => {
   info.data.valid = 'Please Log in.';
+  res.render('login', info);
+});
+
+app.get('/login', (req, res) => {
   res.render('login', info);
 });
 
