@@ -19,7 +19,7 @@ exports.shortenLimo = async (req, res, next) => {
       });
 
     // check if original_url already exists in database
-    const url = await Limo.findOne({ original_url });
+    const url = await Limo.findOne({ user: req.user.id, original_url });
 
     // get shortid of existing url
     if (url) {
