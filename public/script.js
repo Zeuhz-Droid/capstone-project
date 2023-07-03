@@ -13,11 +13,11 @@ password2?.addEventListener('input', handleBtn);
 
 function handleBtn(e) {
   if (e.target.value !== passwordValue) {
-    formError.classList.remove('hide');
-    btnSubmitSignupForm.setAttribute('disabled');
+    formError?.classList.remove('hide');
+    btnSubmitSignupForm?.setAttribute('disabled', '');
   } else {
-    formError.classList.add('hide');
-    btnSubmitSignupForm.removeAttribute('disabled');
+    formError?.classList.add('hide');
+    btnSubmitSignupForm?.removeAttribute('disabled');
   }
 }
 
@@ -52,4 +52,17 @@ function togglePassword(e) {
       elem.querySelector('.form__input').type = 'password';
     }
   }
+}
+
+document.addEventListener('input', addtoggle);
+
+function addtoggle(e) {
+  if (!(e.target.type === 'password')) return;
+  const elem = e.target
+    .closest('.form__group')
+    .querySelector('.form__checkPassword');
+
+  e.target.type === 'password'
+    ? elem.classList.remove('hide')
+    : elem.classList.add('hide');
 }
