@@ -56,9 +56,9 @@ exports.login = async (req, res, next) => {
 
     // if user isn't found
     if (!user) {
-      res.render('signup', {
+      res.render('login', {
         data: {
-          error: 'User with this email not found, Please signup here...',
+          error: 'User with this email not found, Try signing up.',
         },
       });
       return;
