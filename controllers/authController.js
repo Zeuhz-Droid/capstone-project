@@ -104,7 +104,6 @@ exports.verify = async (req, res, next) => {
   try {
     //  get the token from user header authorisation obj
 
-    console.log('it got here');
     const token =
       req.headers.authorization?.split(' ')[1] ||
       req.headers.cookie?.split('=')[1] ||
@@ -124,8 +123,6 @@ exports.verify = async (req, res, next) => {
 
     // find user
     const user = await User.findById(decoded.id);
-
-    console.log('and here too');
 
     // find links from user
     const limos = await Limo.find({ user: user.id });
