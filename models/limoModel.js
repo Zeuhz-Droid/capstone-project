@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
+const { string } = require('vrandom');
 
 const limoSchema = new mongoose.Schema({
   original_url: {
@@ -21,9 +21,18 @@ const limoSchema = new mongoose.Schema({
     // data: Buffer,
   },
   date_created: {
-    type: Date,
+    type: String,
     default: function () {
-      return moment().format('ddd DD-MM-YYYY HH:mm');
+      const date = new Date();
+      const options = {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      };
+      return date.toLocaleDateString('en-US', options);
     },
   },
   limo_lastModifiedAt: Date,
