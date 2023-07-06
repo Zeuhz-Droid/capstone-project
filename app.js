@@ -77,23 +77,29 @@ app.get('/', verify, (req, res) => {
   res.render('index', info);
 });
 
+// render signup page
 app.get('/signup', (req, res) => {
   res.render('signup', info);
 });
 
+// get signup info
 app.post('/signup', signup, (req, res) => {
   info.data.valid = 'Please Log in.';
   res.render('login', info);
 });
 
+// render login info
 app.get('/login', (req, res) => {
   res.render('login', info);
 });
 
+// get login info
 app.post('/login', login);
 
+// consume user requests to index page
 app.use('/api/v1/', verify, limoRouter);
 
+// render api docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(process.env.PORT || 8000, () => {
