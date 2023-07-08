@@ -26,6 +26,7 @@ exports.shortenLimo = async (req, res, next) => {
       shortID = url.shortened_url;
       cacheKey = url.qr_code;
       qrCode = fetchCacheValue(cacheKey);
+      console.log(qrCode);
       res.render('index', {
         data: {
           shortenedLimo: shortID,
@@ -39,7 +40,11 @@ exports.shortenLimo = async (req, res, next) => {
 
     if (!url) {
       // converts string(url) to qrcode, if url doesn't exists
-      cacheKey = convertStrToQrCode(original_url);
+      convertStrToQrCode(original_url)
+        .then((key) => (cacheKey = key))
+        .catch((err) => {
+          throw new Error(err);
+        });
 
       // generate short ID which will be sent to user
       shortID = shortid.generate();
@@ -53,14 +58,14 @@ exports.shortenLimo = async (req, res, next) => {
       user: req.user.id,
     });
 
+    console.log(`cachekey: ${cacheKey}`);
+
     //  fetch cached value (qr code) from cached memory
     if (cacheKey) qrCode = fetchCacheValue(cacheKey);
 
     // find links created by current user
-
     const limos = await Limo.find({ user: req.user.id });
 
-    console.log(limos);
     // render user info
     res.render('index', {
       data: {

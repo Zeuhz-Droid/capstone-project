@@ -57,12 +57,17 @@
             <% if (data.qr_code) { %>
             <span>QR code :</span>
             <div class="limo__qr-code-container">
-              <span
-                style="width: 200px; height: 200px; font-size: 6.5px"
+              <img
+                src="<%= data.qr_code%>"
                 class="limo__qr-code-img"
                 alt="qr-code"
-                data-content="<%= data.qr_code%>"
-              ></span>
+              />
+              <!-- <span
+                style="width: 200px; height: 200px"
+                class="limo__qr-code-img"
+                alt="qr-code"
+                data-content="" 
+              ></span>-->
             </div>
             <% } %>
           </div>

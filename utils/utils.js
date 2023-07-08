@@ -11,30 +11,31 @@ const generateKey = () => {
 };
 
 const cacheString = (key, str) => {
-  myCache.set(key, str, 86400);
-  return myCache.get(key);
+  return myCache.set(key, str, 86400);
 };
 
 const convertStrToQrCode = (str) => {
   let cacheKey,
     qr_size = 200;
   // convert str into qrcode (string)
-  QRCode.toString(
-    JSON.stringify(str),
-    {
-      type: 'png',
-      width: qr_size,
-    },
-    function (err, src) {
-      if (err) throw err;
-      // generate cache key
-      cacheKey = generateKey();
+  return new Promise((resolve, reject) => {
+    QRCode.toDataURL(
+      JSON.stringify(str),
+      { errorCorrectionLevel: 'H', width: qr_size },
+      function (err, dataUrl) {
+        if (err) reject(err);
 
-      // cache qr using key generated
-      cacheString(cacheKey, src);
-    }
-  );
-  return cacheKey;
+        // generate cache key
+        cacheKey = generateKey();
+
+        // cache qr using key generated
+        const cached = cacheString(cacheKey, dataUrl);
+
+        // return cacheKey If cache happened
+        if (cached) resolve(cacheKey);
+      }
+    );
+  });
 };
 
 const fetchCacheValue = (key) => {
