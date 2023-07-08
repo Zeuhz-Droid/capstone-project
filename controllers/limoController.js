@@ -26,7 +26,6 @@ exports.shortenLimo = async (req, res, next) => {
       shortID = url.shortened_url;
       cacheKey = url.qr_code;
       qrCode = fetchCacheValue(cacheKey);
-      console.log(qrCode);
       res.render('index', {
         data: {
           shortenedLimo: shortID,
@@ -57,8 +56,6 @@ exports.shortenLimo = async (req, res, next) => {
       qr_code: cacheKey,
       user: req.user.id,
     });
-
-    console.log(`cachekey: ${cacheKey}`);
 
     //  fetch cached value (qr code) from cached memory
     if (cacheKey) qrCode = fetchCacheValue(cacheKey);
@@ -99,8 +96,6 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
 
     // saved analytics update
     await limo.save();
-
-    console.log(limo);
 
     // redirect user to original url
     res.redirect(limo.original_url);
