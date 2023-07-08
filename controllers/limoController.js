@@ -73,6 +73,8 @@ exports.shortenLimo = async (req, res, next) => {
         history: limos,
       },
     });
+
+    return;
   } catch (err) {
     res.render('index', {
       data: { shortenedLimo: null, error: err.message, qr_code: null },
@@ -99,6 +101,8 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
 
     // redirect user to original url
     res.redirect(limo.original_url);
+
+    return;
   } catch (error) {
     console.error('Error retrieving link:', error.message);
     res.status(500).json({
