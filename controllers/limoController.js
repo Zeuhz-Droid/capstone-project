@@ -42,7 +42,10 @@ exports.shortenLimo = async (req, res, next) => {
       convertStrToQrCode(original_url)
         .then((key) => (cacheKey = key))
         .catch((err) => {
-          throw new Error(err);
+          res.status(500).json({
+            status: 'failed',
+            error: 'An error occurred while caching the link',
+          });
         });
 
       // generate short ID which will be sent to user
@@ -97,10 +100,10 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
     limo?.updateAnalytics();
 
     // saved analytics update
-    await limo.save();
+    await limo?.save();
 
     // redirect user to original url
-    res.redirect(limo.original_url);
+    res.redirect(limo?.original_url);
 
     return;
   } catch (error) {
