@@ -108,9 +108,9 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
     return;
   } catch (error) {
     console.error('Error retrieving link:', error.message);
-    res.status(500).json({
-      status: 'failed',
-      error: 'An error occurred while retrieving the link',
-    });
+    // res.status(500).json({
+    //   status: 'failed',
+    //   error: 'An error occurred while retrieving the link',
+    // });
   }
 };
