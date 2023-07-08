@@ -55,10 +55,14 @@ if ((process.env.NODE_ENV = 'development')) {
 
 app.use(express.static('public'));
 
+// access request body
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+
+// set up ejs file format
 app.set('view engine', 'ejs');
 
+// user info (to be rendered) on client side
 const info = {
   data: {
     username: null,
@@ -102,6 +106,7 @@ app.use('/', verify, limoRouter);
 // render api docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// starting the server
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);
 });
