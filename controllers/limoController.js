@@ -92,7 +92,7 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
     if (!limo) res.status(400).send('Link not Found.');
 
     // update analytics
-    limo.updateAnalytics();
+    limo?.updateAnalytics();
 
     // saved analytics update
     await limo.save();
