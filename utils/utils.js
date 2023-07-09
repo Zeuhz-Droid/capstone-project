@@ -11,32 +11,54 @@ const generateKey = () => {
 };
 
 const cacheString = (key, str) => {
-  return myCache.set(key, str, 86400);
+  return myCache.set(key, str, 2592000);
 };
 
-const convertStrToQrCode = (str) => {
-  let cacheKey,
-    qr_size = 200;
-  // convert str into qrcode (string)
-  return new Promise((resolve, reject) => {
-    QRCode.toDataURL(
-      JSON.stringify(str),
-      { errorCorrectionLevel: 'H', width: qr_size },
-      function (err, dataUrl) {
-        if (err) reject(err);
+async function convertStrToQrCode(str) {
+  try {
+    let cacheKey,
+      qr_size = 200;
+    const dataUrl = await QRCode.toDataURL(JSON.stringify(str), {
+      errorCorrectionLevel: 'H',
+      width: qr_size,
+    });
 
-        // generate cache key
-        cacheKey = generateKey();
+    // generate cache key
+    cacheKey = generateKey();
 
-        // cache qr using key generated
-        const cached = cacheString(cacheKey, dataUrl);
+    // cache qr using key generated
+    const cached = cacheString(cacheKey, dataUrl);
 
-        // return cacheKey If cache happened
-        if (cached) resolve(cacheKey);
-      }
-    );
-  });
-};
+    // return cacheKey If cache happened
+    if (cached) return cacheKey;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+// const convertStrToQrCode = (str) => {
+//   let cacheKey,
+//     qr_size = 200;
+//   // convert str into qrcode (string)
+//   return new Promise((resolve, reject) => {
+//     QRCode.toDataURL(
+//       JSON.stringify(str),
+//       { errorCorrectionLevel: 'H', width: qr_size },
+//       function (err, dataUrl) {
+//         if (err) reject(err);
+
+//         // generate cache key
+//         cacheKey = generateKey();
+
+//         // cache qr using key generated
+//         const cached = cacheString(cacheKey, dataUrl);
+
+//         // return cacheKey If cache happened
+//         if (cached) resolve(cacheKey);
+//       }
+//     );
+//   });
+// };
 
 const fetchCacheValue = (key) => {
   return myCache.get(key);
