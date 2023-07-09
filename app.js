@@ -1,17 +1,27 @@
-const morgan = require('morgan');
 const express = require('express');
+const morgan = require('morgan');
+const bodyparser = require('body-parser');
+
+const app = express();
+require('dotenv').config();
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const rateLimit = require('express-rate-limit');
+
+const connectToDatabase = require('./server');
 const limoRouter = require('./routes/limoRouter');
 const { signup, login, verify } = require('./controllers/authController');
 
-require('dotenv').config();
-
-const connectToDatabase = require('./server');
-const app = express();
-const bodyparser = require('body-parser');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-
 connectToDatabase();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again in an 15mins!',
+});
+
+app.use('/shorten', limiter);
 
 const swaggerDefinition = {
   openapi: '3.0.0',
