@@ -97,13 +97,13 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
     if (!limo) res.status(400).send('Link not Found.');
 
     // update analytics
-    limo?.updateAnalytics();
+    limo.updateAnalytics();
 
     // saved analytics update
-    await limo?.save();
+    await limo.save();
 
     // redirect user to original url
-    res.redirect(limo?.original_url);
+    res.redirect(limo.original_url);
 
     return;
   } catch (error) {
