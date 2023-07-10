@@ -120,3 +120,5 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);
 });
+
+module.exports = app;
