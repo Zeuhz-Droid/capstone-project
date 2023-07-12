@@ -2,6 +2,7 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const btnSubmitSignupForm = document.querySelector('.btn--signup');
 const formError = document.querySelector('.form__error');
+const index = document.getElementById('index');
 
 let passwordValue;
 
@@ -23,19 +24,6 @@ function handleBtn(e) {
 
 // toggle password functionality
 document.addEventListener('change', togglePassword);
-
-// This worked for only one toggle password func.
-// function togglePassword() {
-//   if (formCheckbox.checked) {
-//     showPassword.classList.add('hide');
-//     hidePassword.classList.remove('hide');
-//     password.type = 'text';
-//   } else {
-//     showPassword.classList.remove('hide');
-//     hidePassword.classList.add('hide');
-//     password.type = 'password';
-//   }
-// }
 
 function togglePassword(e) {
   let elem;
@@ -66,3 +54,13 @@ function addtoggle(e) {
     ? elem.classList.remove('hide')
     : elem.classList.add('hide');
 }
+
+index?.addEventListener('click', handleDeleteLimoHistory);
+
+function handleDeleteLimoHistory(e) {
+  if (!e.target.classList.contains('btn--delete')) return;
+  displayModal();
+  // elem = e.target.classList.contains('btn--delete');
+}
+
+function displayModal() {}
