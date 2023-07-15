@@ -184,6 +184,10 @@ body {
   background: none;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .form-limo__input {
   width: 100%;
   height: 5rem;
@@ -209,8 +213,111 @@ body {
   opacity: 0.7;
 }
 
-.btn--delete {
+.btn--trash {
   opacity: 0.5;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 50rem;
+  height: 25rem;
+  background-color: #f4f4f4;
+  border-radius: 1rem;
+  padding: 0rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+}
+
+.modal.pin {
+  visibility: hidden;
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  width: 100%;
+}
+
+.btn--close {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.btn--cancel {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #68ba9e;
+  color: #010b08;
+}
+
+.btn--delete {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #d01818;
+  color: #fff;
+}
+
+.btn--cancel:hover,
+.btn--delete:hover {
+  opacity: 0.7;
+}
+
+.del-link {
+  text-decoration: none;
+  color: #fff;
 }
 
 /* SIGN UP PAGE */

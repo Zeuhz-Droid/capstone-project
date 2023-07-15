@@ -110,7 +110,8 @@
               ><%= item.shortened_url %></a
             >
             <span><%= item.date_created %></span>
-            <button class="btn btn--delete" id="<%= item.shortened_url %>">
+
+            <button class="btn btn--trash" id="<%= item.shortened_url %>">
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </div>
@@ -118,5 +119,27 @@
         </div>
       </aside>
     </div>
+    <div class="modal pin">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="heading__secondary">Delete link</h2>
+          <button class="btn btn--close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p>
+            This action will is permanent &ThinSpace; &ndash; are you sure you
+            want to delete this link?
+          </p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--cancel">Cancel</button>
+          <button class="btn btn--delete">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay hide"></div>
+    <script src="/script.js"></script>
   </body>
 </html>
