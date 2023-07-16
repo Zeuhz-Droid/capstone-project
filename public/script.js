@@ -2,11 +2,19 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const btnSubmitSignupForm = document.querySelector('.btn--signup');
 const formError = document.querySelector('.form__error');
-const index = document.getElementById('index');
+const indexPage = document.getElementById('index');
 
-let passwordValue;
+// MODAL EFFECT
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnDelete = document.querySelector('.btn--delete');
+const btnCancel = document.querySelector('.btn--cancel');
+const btnClose = document.querySelector('.btn--close');
+const formDelLink = document.querySelector('.del-link');
 
-password.addEventListener('input', (e) => {
+let passwordValue, limoID;
+
+password?.addEventListener('input', (e) => {
   passwordValue = e.target.value;
 });
 
@@ -55,12 +63,46 @@ function addtoggle(e) {
     : elem.classList.add('hide');
 }
 
-index?.addEventListener('click', handleDeleteLimoHistory);
+indexPage?.addEventListener('click', handleDeleteLimoHistory);
 
 function handleDeleteLimoHistory(e) {
-  if (!e.target.classList.contains('btn--delete')) return;
+  // check clause
+  if (!e.target.classList.contains('fa-trash-can')) return;
+
+  limoID = e.target.closest('.btn--trash').id;
+
+  // display modal for delete
   displayModal();
-  // elem = e.target.classList.contains('btn--delete');
 }
 
-function displayModal() {}
+// function setIDonDeleteBtn(id) {
+//   formDelLink.setAttribute('action', `/delID/${id}`);
+// }
+
+function displayModal() {
+  overlay.classList.remove('hide');
+  modal.classList.remove('pin');
+}
+
+function hideModal() {
+  overlay.classList.add('hide');
+  modal.classList.add('pin');
+}
+
+btnCancel?.addEventListener('click', hideModal);
+btnClose?.addEventListener('click', hideModal);
+
+btnDelete?.addEventListener('click', handleDelLink);
+
+function handleDelLink() {
+  const url = `https://xixuz.onrender.com/delID/${limoID}`;
+  const options = {
+    method: 'DELETE',
+    mode: 'cors',
+    Headers: 'Access-Control-Allow-Origin',
+  };
+
+  fetch(url, options)
+    .then((res) => console.log(`successful: ${res.json()}`))
+    .catch((err) => console.log(err));
+}
