@@ -81,4 +81,6 @@ router.route('/shorten').post(limoController.shortenLimo);
 
 router.route('/shortID/:shortID').get(limoController.getSiteFromShortenedLimo);
 
+router.route('delID/:shortID').delete(limoController.delShortenedLimo);
+
 module.exports = router;
