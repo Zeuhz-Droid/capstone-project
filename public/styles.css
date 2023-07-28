@@ -218,7 +218,7 @@ body {
 }
 
 .overlay {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -232,7 +232,7 @@ body {
 }
 
 .modal {
-  width: 50rem;
+  width: 70%;
   height: 25rem;
   background-color: #f4f4f4;
   border-radius: 1rem;
@@ -458,5 +458,9 @@ body {
   .form,
   .form-limo {
     width: 100%;
+  }
+
+  .modal {
+    width: 90%;
   }
 }
