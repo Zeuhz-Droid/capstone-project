@@ -218,7 +218,7 @@ body {
 }
 
 .overlay {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -232,7 +232,7 @@ body {
 }
 
 .modal {
-  width: 70%;
+  width: 50%;
   height: 25rem;
   background-color: #f4f4f4;
   border-radius: 1rem;
