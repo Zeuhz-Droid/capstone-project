@@ -107,3 +107,32 @@ exports.getSiteFromShortenedLimo = async (req, res, next) => {
     // });
   }
 };
+
+exports.delShortenedLimo = async (req, res, next) => {
+  try {
+    const { shortID } = req.params;
+
+    const url = await Limo.findOneAndDelete({ shortened_url: shortID });
+
+    const limos = await Limo.find({ user: req.user.id });
+
+    if (!url)
+      res.render('index', {
+        data: {
+          error: `No url found with this ID.`,
+          username: req.user.username,
+          history: limos,
+        },
+      });
+
+    res.render('index', {
+      data: {
+        error: null,
+        username: req.user.username,
+        history: limos,
+      },
+    });
+  } catch (err) {
+    throw new Error(err);
+  }
+};
