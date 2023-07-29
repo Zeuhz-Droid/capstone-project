@@ -121,6 +121,18 @@ app.use('/', verify, limoRouter);
 // render api docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Listen for uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err.stack);
+  console.log(err);
+});
+
+// Listen for unhandled rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection:', reason);
+  console.log(`Error: ${reason}`);
+});
+
 // starting the server
 app.listen(process.env.PORT || 8000, () => {
   console.log(`app is listening on port : ${process.env.PORT}`);
