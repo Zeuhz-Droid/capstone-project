@@ -69,15 +69,15 @@ function handleDeleteLimoHistory(e) {
   // check clause
   if (!e.target.classList.contains('fa-trash-can')) return;
 
+  // Get link history
   limoID = e.target.closest('.btn--trash').id;
+
+  // insert id into action attribute on delete button
+  modal.setAttribute('action', `/delID/${limoID}?_method=DELETE`);
 
   // display modal for delete
   displayModal();
 }
-
-// function setIDonDeleteBtn(id) {
-//   formDelLink.setAttribute('action', `/delID/${id}`);
-// }
 
 function displayModal() {
   overlay.classList.remove('hide');
@@ -92,17 +92,17 @@ function hideModal() {
 btnCancel?.addEventListener('click', hideModal);
 btnClose?.addEventListener('click', hideModal);
 
-btnDelete?.addEventListener('click', handleDelLink);
+// btnDelete?.addEventListener('click', handleDelLink);
 
-function handleDelLink() {
-  const url = `https://xixuz.onrender.com/delID/${limoID}`;
-  const options = {
-    method: 'DELETE',
-    mode: 'cors',
-    Headers: 'Access-Control-Allow-Origin',
-  };
+// function handleDelLink() {
+//   const url = `https://xixuz.onrender.com/delID/${limoID}`;
+//   const options = {
+//     method: 'DELETE',
+//     mode: 'cors',
+//     Headers: 'Access-Control-Allow-Origin',
+//   };
 
-  fetch(url, options)
-    .then((res) => console.log(`successful: ${res.json()}`))
-    .catch((err) => console.log(err));
-}
+//   fetch(url, options)
+//     .then((res) => console.log(`successful: ${res.json()}`))
+//     .catch((err) => console.log(err));
+// }

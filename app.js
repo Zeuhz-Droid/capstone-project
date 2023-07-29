@@ -5,6 +5,7 @@ const bodyparser = require('body-parser');
 const app = express();
 require('dotenv').config();
 
+const cors = require('cors');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const rateLimit = require('express-rate-limit');
@@ -14,6 +15,10 @@ const limoRouter = require('./routes/limoRouter');
 const { signup, login, verify } = require('./controllers/authController');
 
 connectToDatabase();
+
+app.use(cors());
+
+app.options('*', cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

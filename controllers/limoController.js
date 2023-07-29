@@ -112,10 +112,16 @@ exports.delShortenedLimo = async (req, res, next) => {
   try {
     const { shortID } = req.params;
 
-    const url = await Limo.findOneAndDelete({ shortened_url: shortID });
+    const { _method } = req.query;
 
-    const limos = await Limo.find({ user: req.user.id });
+    let url;
 
+    //  check if user's wants to delete
+    if (_method === 'DELETE') {
+      url = await Limo.findOneAndDelete({ shortened_url: shortID });
+    }
+
+    //  return error if 'url' not found
     if (!url)
       res.render('index', {
         data: {
@@ -125,6 +131,10 @@ exports.delShortenedLimo = async (req, res, next) => {
         },
       });
 
+    // find user's remaining limo
+    const limos = await Limo.find({ user: req.user.id });
+
+    // send user remaining info
     res.render('index', {
       data: {
         error: null,

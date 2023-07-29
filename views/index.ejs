@@ -119,7 +119,11 @@
         </div>
       </aside>
     </div>
-    <div class="modal pin">
+    <form
+      class="modal pin"
+      method="POST"
+      action="/delID/:shortID?_method=DELETE"
+    >
       <div class="modal__content">
         <div class="modal__header">
           <h2 class="heading__secondary">Delete link</h2>
@@ -135,10 +139,10 @@
         </div>
         <div class="modal__footer">
           <button class="btn btn--cancel">Cancel</button>
-          <button class="btn btn--delete">Delete</button>
+          <button type="submit" class="btn btn--delete">Delete</button>
         </div>
       </div>
-    </div>
+    </form>
     <div class="overlay hide"></div>
     <script src="/script.js"></script>
   </body>
