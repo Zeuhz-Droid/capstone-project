@@ -91,18 +91,3 @@ function hideModal() {
 
 btnCancel?.addEventListener('click', hideModal);
 btnClose?.addEventListener('click', hideModal);
-
-// btnDelete?.addEventListener('click', handleDelLink);
-
-// function handleDelLink() {
-//   const url = `https://xixuz.onrender.com/delID/${limoID}`;
-//   const options = {
-//     method: 'DELETE',
-//     mode: 'cors',
-//     Headers: 'Access-Control-Allow-Origin',
-//   };
-
-//   fetch(url, options)
-//     .then((res) => console.log(`successful: ${res.json()}`))
-//     .catch((err) => console.log(err));
-// }
