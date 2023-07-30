@@ -79,8 +79,9 @@ router.route('/shorten').post(limoController.shortenLimo);
  *                       example: "https://youtube.com/shorts/_wh-Ax0Bc5g?feature=share4"
  */
 
-router.route('/shortID/:shortID').get(limoController.getSiteFromShortenedLimo);
-
-router.route('/delID/:shortID').post(limoController.delShortenedLimo);
+router
+  .route('/:shortID')
+  .get(limoController.getSiteFromShortenedLimo)
+  .post(limoController.delShortenedLimo);
 
 module.exports = router;

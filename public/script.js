@@ -73,7 +73,7 @@ function handleDeleteLimoHistory(e) {
   limoID = e.target.closest('.btn--trash').id;
 
   // insert id into action attribute on delete button
-  modal.setAttribute('action', `/delID/${limoID}?_method=DELETE`);
+  modal.setAttribute('action', `/${limoID}?_method=DELETE`);
 
   // display modal for delete
   displayModal();
